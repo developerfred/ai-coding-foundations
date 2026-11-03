@@ -4,7 +4,7 @@ Para aproveitar este repositório, você vai precisar de:
 
 ## Ferramentas essenciais
 
-- **Node.js** (v18+) e **npm** — para rodar exemplos de JavaScript/TypeScript
+- **Node.js** (v18+) e **npm** — para rodar exemplos de JavaScript
 - **Git** — para versionar seu progresso
 - **Um editor de código** (VS Code, Cursor, etc.)
 - **Terminal** com acesso a linha de comando

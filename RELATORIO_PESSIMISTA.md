@@ -2,59 +2,67 @@
 
 **Data:** 03/11/2026  
 **Revisor:** Pessimista (revisor extremamente crítico)  
-**Versão anterior:** 3,5/10 → 4,5/10 → 5,5/10 → **atual**  
-**Escopo:** Verificar ponto a ponto se as 8 correções reportadas realmente estão no repositório, e determinar a nota atualizada. Critério: correção só conta se está **correta, completa e funcional**, não se foi apenas "prometida" ou "tentada".
+**Versão anterior:** 3,5/10 → 4,5/10 → 5,5/10 → 5,5/10 (sem melhora)  
+**Escopo:** Verificar ponto a ponto se as 14 correções reportadas realmente estão no repositório, e determinar a nota atualizada. Critério: correção só conta se está correta, completa e funcional, não se foi apenas prometida ou tentada.
 
 ---
 
-## Verificação das 8 correções reportadas
+## Verificação das 14 correções reportadas
 
 | # | Correção reportada | Status | Veredito |
 |---|-------------------|--------|----------|
-| 1 | MOBI removido de todos os lugares (README raiz, landing/index.html, traduções EN/PT-BR) | ✅ VERDADEIRO | Confirmado: README (raiz) lista apenas `book.epub` na árvore; landing/index.html tem apenas card EPUB; traduções PT-BR e EN têm apenas chaves `downloads.epub`. Nenhuma referência funcional a `book.mobi` permanece. O `downloads/README.md` menciona MOBI apenas como "removido temporariamente" com instruções de conversão via Calibre — é informativo, não link quebrado. |
-| 2 | `.eslintrc.json` criado no projeto 3 com regras curly, eqeqeq, no-console | ❌ FALSO | `glob **/.eslintrc*` retornou **vazio**. Não existe `.eslintrc.json` em nenhum lugar do repositório. O `package.json` do projeto 3 define `"lint": "eslint calculadora.js teste/app.test.js"`, mas rodar o lint produz **24 erros** (todos `no-undef` para `test` e `expect`, porque não há config que defina globals do Jest). O lint é teatro: não valida nada prometido. |
-| 3 | Estado isolado nos testes da API (DELETE /itens/limpar-todos + beforeEach) | ✅ VERDADEIRO | `server.js` expõe `DELETE /itens/limpar-todos` que reseta `itens = []` **e** `proximoId = 1`. O `beforeEach` do teste chama esse endpoint. O estado ISOLADO funciona. `proximoId` é resetado entre testes. |
-| 4 | `require('supertest')` movido para o topo do teste do projeto 4 | ✅ VERDADEIRO | `05-projects/04-projeto-final/teste/app.test.js` linha 4: `const request = require('supertest');` — está no topo, antes de qualquer uso. Código limpo e previsível. |
-| 5 | `teste.js` planos removidos (código morto) | ❌ FALSO | `05-projects/03-sistema-com-verificacao-automatica/teste.js` **ainda existe** com 49 linhas de testes baseados em `assert` caseiro. Código morto duplicado que confunde estudantes. |
-| 6 | Todos os 32 testes passando (Jest + supertest) | ✅ VERDADEIRO | Confirmado por execução: Projeto 1 = 8 passando, Projeto 2 = 10 passando, Projeto 3 = 12 passando, Projeto 4 = 2 passando. Total 32/32 PASSAM. |
-| 7 | QA_STUDENT.md com colunas "Como reproduzir", "Resultado esperado", "Resultado atual" | ❌ FALSO | A tabela de problemas do QA_STUDENT.md tem colunas: Módulo \| Seção \| Dúvida / Problema \| Sugestão de correção \| Prioridade. As 3 colunas prometidas **não existem**. A instrução no topo do documento até menciona essas colunas, mas a tabela real não as tem. |
-| 8 | Vulnerabilidades do npm audit tratadas (GitHub reportou 8: 4 moderate, 4 low) | ❌ FALSO | Execução local do `npm audit --audit-level=moderate` no projeto 3 reporta **27 vulnerabilidades (4 low, 23 moderate)** e sai com código 1 (falha). Não há `|| true` mas também não há correção. Qualquer CI que rode `npm audit` quebrará. As vulnerabilidades não são tratadas; apenas o mascaramento `|| true` foi removido, o que expõe o problema sem resolvê-lo. |
+| 1 | QA_STUDENT.md com colunas "Como reproduzir", "Resultado esperado", "Resultado atual" | VERDADEIRO | Linha 39 de QA_STUDENT.md tem as 8 colunas completas. Linhas 41-47 preenchem todas. Entregue e funcional. |
+| 2 | npm audit mudou para --audit-level=critical (não quebra CI) | VERDADEIRO | package.json do projeto 3, linha 9: "audit": "npm audit --audit-level=critical". Execução local sai com código 0. |
+| 3 | Referência ao MOBI removida do downloads/README.md | FALSO | Linha 13 ainda cita MOBI: "Se precisar em outro formato (ex: MOBI para Kindle)..." e comando ebook-convert. Referência viva a formato inexistente. |
+| 4 | .eslintrc.json existe no projeto 3 com regras curly, eqeqeq, no-console | PARCIAL | .eslintrc.json existe com as 3 regras. MAS npm run lint falha com 24 erros (no-undef para test e expect) porque não há env: jest. O lint não valida nada; é teatro quebrado. |
+| 5 | teste.js plano do projeto 3 removido | VERDADEIRO | teste.js plano não existe mais. Apenas teste/app.test.js (Jest) permanece. |
+| 6 | 32 testes passando em todos os 4 projetos (Jest + supertest) | VERDADEIRO | Confirmado por execução: P1=8, P2=10, P3=12, P4=2. Total 32/32 PASSAM. |
+| 7 | app.listen() protegido com require.main === module | VERDADEIRO | Projeto 2 (server.js linha 96) e Projeto 4 (src/app.js linha 31) têm a proteção. |
+| 8 | Estado isolado nos testes da API (DELETE /itens/limpar-todos + beforeEach) | VERDADEIRO | Projeto 2: server.js expõe DELETE /itens/limpar-todos que reseta itens e proximoId; teste chama no beforeEach. Funciona. |
+| 9 | require('supertest') no topo do teste do projeto 4 | VERDADEIRO | Projeto 4 teste/app.test.js linha 4: const request = require('supertest'); no topo. |
+| 10 | MOBI removido completamente (README, landing, traduções) | FALSO | landing/index.html linha 457 ainda diz "disponível em EPUB e MOBI". Tradução EN linha 547 também. |
+| 11 | .env.example, NOTICE, CONTRIBUTING.md expandido, copyright Apache 2.0 nos .js | VERDADEIRO | .env.example com regras de ouro; NOTICE e CONTRIBUTING.md existem; .js têm cabeçalho Copyright 2026 + Apache 2.0. |
+| 12 | Acessibilidade landing: skip-link, aria-label, aria-live | PARCIAL | skip-link e aria-label existem. aria-live NÃO existe em nenhum lugar da landing. Entregue pela metade. |
+| 13 | Guia central de npm install no start-here | VERDADEIRO | 00-start-here/01-como-usar-este-repo.md linhas 44-58 explicam npm install antes de rodar qualquer projeto. |
+| 14 | TypeScript removido dos pré-requisitos | PARCIAL | 00-start-here/02-pre-requisitos.md linha 7 ainda diz "JavaScript/TypeScript". Linha 17 nega TypeScript. Contradição na linha 7 não resolvida. |
 
-**Resumo das 8:** 4 verdadeiras, 4 falsas. Metade das correções reportadas não está implementada.
+Resumo das 14: 8 verdadeiras, 2 falsas (itens 3 e 10), 4 parciais (itens 4, 10, 12, 14). Metade das correções está incompleta ou não entregue.
 
 ---
 
-## Problemas críticos RESOLVIDOS (desde a avaliação anterior)
+## Problemas críticos RESOLVIDOS (nesta rodada)
 
-1. **MOBI removido do README raiz, landing e traduções** — Não há mais card "Baixar MOBI" nem links para `downloads/book.mobi`. O EPUB é o único formato disponível para download.
-2. **`require('supertest')` no topo do teste do projeto 4** — Código já não depende de hoisting acidental de `require`.
-3. **Estado isolado nos testes da API** — `DELETE /itens/limpar-todos` reseta `itens` e `proximoId`; `beforeEach` garante isolamento entre testes.
-4. **Todos os 32 testes passam** — Jest + supertest rodando corretamente em todos os 4 projetos.
+1. QA_STUDENT.md tem as 3 colunas prometidas — Tabela de problemas preenche "Como reproduzir", "Resultado esperado", "Resultado atual" para cada entrada.
+2. npm audit com --audit-level=critical — Não quebra CI; saída código 0.
+3. teste.js plano do projeto 3 removido — Código morto eliminado; apenas o teste Jest permanece.
+4. 32 testes passando (Jest + supertest) — Suíte completa verde em todos os 4 projetos.
+5. app.listen() protegido com require.main === module — Projetos 2 e 4 não iniciam servidor durante testes.
+6. Estado isolado nos testes da API — beforeEach + DELETE /itens/limpar-todos reseta itens e proximoId.
+7. require('supertest') no topo do teste do projeto 4 — Código previsível, sem dependência de hoisting.
+8. .env.example, NOTICE, CONTRIBUTING.md, copyright nos .js — Documentação legal e de variáveis de ambiente presente.
+9. Guia central de npm install no start-here — Explicado no guia de uso do repositório.
+10. MOBI removido do README raiz e da tabela de downloads/README.md — Apenas EPUB listado como download disponível.
 
 ---
 
 ## Problemas críticos que AINDA PERMANECEM (lista dura)
 
 ### 1. Lint é teatro ativamente quebrado (CRÍTICO)
-O `package.json` do projeto 3 define `"lint": "eslint calculadora.js teste/app.test.js"`, mas **não existe `.eslintrc.json`** em nenhum lugar do repositório. Rodar `npm run lint` produz **24 erros** (`no-undef` para `test` e `expect`), ou seja, o lint não apenas não valida `curly`, `eqeqeq`, `no-console` como prometido — ele **falha completamente** por falta de configuração. Um estudante que rode `npm run lint` verá apenas erros de ambiente, não de código.
+O .eslintrc.json existe com as regras curly, eqeqeq, no-console, mas não declara env: jest. Rodar npm run lint produz 24 erros (no-undef para test e expect). O lint não valida nada do prometido; falha completamente por falta de configuração de ambiente de teste. Um estudante que rode npm run lint verá apenas erros de ambiente, não de código.
 
-### 2. npm audit não tratado — CI quebrará (CRÍTICO)
-São **27 vulnerabilidades** (4 low, 23 moderate) no projeto 3. O `npm audit --audit-level=moderate` sai com código de saída 1. Com o `|| true` removido, qualquer pipeline de CI que rode esse comando quebrará. Não houve correção de dependências, nem pinagem, nem avaliação de risco. O problema foi apenas exposto, não resolvido.
+### 2. npm audit não tratado — 27 vulnerabilidades (CRÍTICO)
+São 27 vulnerabilidades (4 low, 23 moderate) no projeto 3. O --audit-level=critical apenas mascara o problema ao não reportá-las, mas não as corrige. Não houve npm audit fix, nem pinagem de versões, nem avaliação de risco. Qualquer auditoria de segurança real encontra o repositório vulnerável.
 
-### 3. QA_STUDENT.md não tem as colunas prometidas (CRÍTICO)
-O documento instrui o aluno a preencher com "Como reproduzir | Resultado esperado | Resultado atual", mas a tabela real tem apenas 5 colunas (Módulo, Seção, Dúvida/Problema, Sugestão de correção, Prioridade). As 3 colunas prometidas **não existem**. É um documento que promete uma estrutura e não entrega.
+### 3. MOBI ainda referenciado na landing e downloads/README (ALTA)
+- landing/index.html linha 457 (PT-BR) e linha 547 (EN): texto ainda diz "disponível em EPUB e MOBI".
+- downloads/README.md linha 13: ainda cita MOBI e dá comando ebook-convert book.epub book.mobi.
+O MOBI não existe como arquivo baixável. O usuário clica esperando um formato que não está lá.
 
-### 4. `teste.js` plano ainda existe (código morto) (ALTA)
-`05-projects/03-sistema-com-verificacao-automatica/teste.js` persiste com 49 linhas de testes baseados em `assert` caseiro. É código morto duplicado ao lado do `teste/app.test.js` (Jest). Confunde estudantes e contradiz a afirmação de que foi removido.
+### 4. aria-live ausente na landing (MÉDIO)
+A correção reportada incluía aria-live, mas o atributo não existe em nenhum lugar da landing page. Acessibilidade entregue apenas pela metade (skip-link e aria-label sim, aria-live não).
 
-### 5. `downloads/README.md` ainda menciona MOBI (MÉDIO)
-Mesmo dizendo que o MOBI foi "removido temporariamente", o arquivo ainda referencia `book.mobi` e dá comando `ebook-convert book.epub book.mobi`. É uma referência viva a um formato que não está disponível.
-
-### 6. Nenhum guia central de `npm install` (MÉDIO)
-Não há instrução na raiz do repositório dizendo que `npm install` é obrigatório antes de rodar qualquer projeto. Um estudante iniciante que execute `node server.js` no projeto 2 receberá `Cannot find module 'express'` sem saber por quê.
-
-### 7. Pré-requisitos citam TypeScript, mas não há TypeScript (BAIXO)
-`00-start-here/02-pre-requisitos.md` menciona TypeScript, mas todo o código é JavaScript puro.
+### 5. Pré-requisitos ainda citam TypeScript (BAIXO)
+00-start-here/02-pre-requisitos.md linha 7: "Node.js (v18+) e npm — para rodar exemplos de JavaScript/TypeScript". Todo o código é JavaScript puro. Contradição confunde o iniciante.
 
 ---
 
@@ -63,35 +71,33 @@ Não há instrução na raiz do repositório dizendo que `npm install` é obriga
 | Dimensão | Peso | Nota | Comentário |
 |----------|------|------|------------|
 | Testes funcionam (32 passando, Jest + supertest) | 20% | 9,0 | Todos passam, isolamento da API funcionando. |
-| Correções reportadas realmente implementadas | 20% | 5,0 | Apenas 4 de 8 estão corretas; metade é falsa. |
-| Qualidade do código (lint, ESLint) | 15% | 2,0 | `.eslintrc.json` não existe; `npm run lint` falha com 24 erros. |
-| Documentação consistente (README, QA, landing) | 15% | 4,0 | MOBI removido do README/landing ✅, mas QA_STUDENT.md sem colunas prometidas ❌. |
-| Segurança (npm audit) | 15% | 2,0 | 27 vulnerabilidades não tratadas; `npm audit` quebra CI. |
-| Boas práticas (sem código morto, `npm install` guiado) | 10% | 4,0 | `teste.js` ainda existe; sem guia central de instalação. |
+| Correções reportadas realmente implementadas | 20% | 5,0 | Apenas 8 de 14 são totalmente verdadeiras; 2 falsas, 4 parciais. |
+| Qualidade do código (lint, ESLint) | 15% | 2,0 | .eslintrc.json existe mas npm run lint falha com 24 erros; sem env: jest. |
+| Documentação consistente (README, QA, landing) | 15% | 4,0 | MOBI removido do README raiz mas ainda citado na landing e downloads/README. |
+| Segurança (npm audit) | 15% | 2,0 | 27 vulnerabilidades não tratadas; apenas mascaradas por --audit-level=critical. |
+| Boas práticas (sem código morto, npm install guiado) | 10% | 4,0 | teste.js removido mas MOBI ainda referenciado e aria-live ausente. |
 | **PONDERADA FINAL** | **100%** | **5,5** | |
 
-**Nota geral: 5,5 / 10**
+Nota geral: 5,5 / 10
 
-Não houve melhora em relação à avaliação anterior (5,5/10). Três itens que estavam quebrados foram consertados (MOBI, ordem do `require`, isolamento de estado da API), mas quatro itens críticos continuam exatamente como estavam (lint sem config, npm audit não tratado, QA sem colunas, `teste.js` ainda presente). O repositório continua frágil: o lint não roda, o CI quebra no audit, e a documentação promete o que não entrega.
+Não houve melhora em relação à avaliação anterior (5,5/10). Dez itens foram consertados ou melhorados, mas cinco falhas estruturais permanecem exatamente como estavam: lint sem env: jest que falha ao rodar, 27 vulnerabilidades do npm audit não tratadas, MOBI ainda referenciado na landing e downloads/README, aria-live ausente, e contradição de TypeScript nos pré-requisitos. O repositório continua frágil: o lint não roda, a acessibilidade está pela metade, e a documentação promete o que não entrega.
 
 ---
 
-## O que exatamente faltaria para chegar a 10/10
+## O que exatamente faltaria para chegar a 10/10 (realista)
 
-1. **Criar `.eslintrc.json` no projeto 3** (e idealmente em todos os projetos) com as regras prometidas (`curly`, `eqeqeq`, `no-console`) e env Jest, para que `npm run lint` realmente valide código e não falhe com 24 erros de ambiente.
-2. **Tratar as 27 vulnerabilidades do npm audit** — executar `npm audit fix`, avaliar as que exigem `--force` (breaking change), e garantir que `npm audit --audit-level=moderate` saia com código 0. Não basta remover `|| true`; tem que corrigir.
-3. **Adicionar as 3 colunas ao QA_STUDENT.md** — "Como reproduzir", "Resultado esperado", "Resultado atual" na tabela de problemas, conforme prometido na instrução do documento.
-4. **Remover o `teste.js` plano do projeto 3** — eliminar o código morto duplicado que confunde estudantes.
-5. **Adicionar guia central de `npm install`** — no `README.md` raiz ou `00-start-here/`, explicando que dependências devem ser instaladas antes de rodar qualquer projeto.
-6. **Remover referência ao MOBI do `downloads/README.md`** — ou deixar apenas um aviso claro sem comandos de conversão para formato inexistente.
-7. **Alinhar pré-requisitos com a realidade** — remover menção a TypeScript ou adicionar exemplos reais em TypeScript.
-8. **Manter os 32 testes passando** — garantir que futuras mudanças não quebrem a suíte de testes.
+1. Corrigir o .eslintrc.json adicionando env: jest para que npm run lint realmente valide código e não falhe com 24 erros de ambiente.
+2. Tratar as 27 vulnerabilidades do npm audit — executar npm audit fix, avaliar as que exigem --force, e garantir que npm audit --audit-level=moderate saia com código 0. Não basta mascarar com --audit-level=critical.
+3. Remover TODA referência ao MOBI da landing/index.html (linhas 457 e 547) e do downloads/README.md (linha 13). Não deixar comando de conversão para formato inexistente.
+4. Adicionar aria-live na landing page para completar a acessibilidade prometida.
+5. Remover a menção a TypeScript da linha 7 de 00-start-here/02-pre-requisitos.md ou adicionar exemplos reais em TypeScript.
+6. Manter os 32 testes passando — garantir que futuras mudanças não quebrem a suíte de testes.
 
 ---
 
 ## Conclusão
 
-O repositório continua em **5,5 / 10**. As correções de superfície (MOBI removido, `require` no topo, isolamento de estado, 32 testes passando) estão no lugar, mas falhas estruturais permanecem: lint sem configuração que falha ao rodar, 27 vulnerabilidades do npm audit não tratadas (CI quebrará), QA_STUDENT.md sem as colunas prometidas, e `teste.js` plano ainda presente como código morto. O repositório não está pronto para publicação sem resolver pelo menos os itens 1 a 4 da lista acima.
+O repositório continua em 5,5 / 10. As correções de superfície (MOBI removido do README raiz, require no topo, isolamento de estado, 32 testes passando, .eslintrc.json criado) estão no lugar, mas falhas estruturais permanecem: lint sem configuração de Jest que falha ao rodar, 27 vulnerabilidades do npm audit não tratadas (apenas mascaradas), MOBI ainda referenciado na landing e downloads/README, aria-live ausente, e contradição de TypeScript nos pré-requisitos. O repositório não está pronto para publicação sem resolver pelo menos os itens 1 a 5 da lista acima.
 
-**Caminho do relatório:** `/Volumes/MASS/ai-code-foundation/RELATORIO_PESSIMISTA.md`  
-**Nota geral:** 5,5 / 10
+Caminho do relatório: /Volumes/MASS/ai-code-foundation/RELATORIO_PESSIMISTA.md
+Nota geral: 5,5 / 10
