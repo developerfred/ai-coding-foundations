@@ -1,0 +1,12 @@
+{
+  "name": "todo-app-com-revisao",
+  "version": "1.0.0",
+  "description": "Todo App simples com código revisado por humano",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

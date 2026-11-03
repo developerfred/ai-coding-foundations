@@ -1,0 +1,13 @@
+NOTICE
+======
+
+AI Coding Foundations
+Copyright 2026 codingsh <codingsh@pm.me>
+
+Este repositório é licenciado sob a Apache License 2.0.
+
+Terceiros mencionados:
+- Andrej Karpathy — Software 2.0, micrograd, nn-zero-to-hero (referências educacionais)
+- Documentação de ferramentas: Claude Code (Anthropic), Cursor, GitHub Copilot (referências de documentação pública)
+
+Este trabalho é inspirado na visão de Andrej Karpathy sobre Software 2.0 e adaptado para a realidade atual de LLMs e agentes de código.

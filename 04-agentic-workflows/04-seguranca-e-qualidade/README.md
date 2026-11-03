@@ -14,7 +14,7 @@ A IA pode sugerir:
 ### Regras de ouro
 
 1. **Nunca coloque segredos no código.** Use variáveis de ambiente (`.env`).
-   Exemplo: crie um arquivo `.env` com `SENHA_DB=seu_valor` e acesse via `process.env.SENHA_DB`. Nunca commite o `.env` — adicione-o ao `.gitignore`.
+   Veja o arquivo [`.env.example`](../.env.example) para um modelo prático. Nunca commite o `.env` — adicione-o ao `.gitignore`.
 2. **Valide toda entrada do usuário.** Nunca confie no que vem do frontend ou da API.
 3. **Use dependências mínimas.** Quanto menos bibliotecas, menor a superfície de ataque.
 4. **Mantenha dependências atualizadas.** Rode `npm audit` ou equivalente regularmente.

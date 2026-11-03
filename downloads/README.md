@@ -1,24 +1,22 @@
 # Downloads
 
-## Arquivos disponíveis
+## Arquivo disponível
 
 | Formato | Arquivo | Descrição |
 |---------|---------|-----------|
-| EPUB | [`book.epub`](book.epub) | Formato universal para e-books (Apple Books, Google Play Books, Kobo, Nook, etc.) |
-| MOBI | [`book.mobi`](book.mobi) | Formato Amazon Kindle |
+| EPUB | [`book.epub`](book.epub) | Formato universal para e-books (Apple Books, Google Play Books, Kobo, Nook, leitores gerais). |
 
 ---
 
-## Converter EPUB → MOBI (Kindle)
+## Sobre o formato MOBI
 
-O arquivo EPUB já está pronto e válido. Se precisar de um MOBI nativo para Kindle, use o **Calibre** (gratuito e de código aberto):
+O formato MOBI (Kindle) foi removido temporariamente. Se você precisa do livro em MOBI, pode converter o EPUB gratuitamente com o **[Calibre](https://calibre-ebook.com/)**:
 
-1. Baixe o Calibre: https://calibre-ebook.com/download
-2. Abra o Calibre → "Adicionar livros" → selecione `book.epub`
-3. Selecione o livro → "Converter livros" → formato de saída: **MOBI**
-4. Salve o arquivo MOBI resultante
+```bash
+ebook-convert book.epub book.mobi
+```
 
-Alternativamente, envie o EPUB diretamente pelo **"Send to Kindle"** da Amazon, que faz a conversão automaticamente.
+Ou envie o EPUB pelo **"Send to Kindle"** da Amazon, que faz a conversão automaticamente.
 
 ---
 

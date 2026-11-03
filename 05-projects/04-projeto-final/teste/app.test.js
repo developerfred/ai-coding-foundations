@@ -1,21 +1,17 @@
-// Teste inicial do projeto final (placeholder)
-// Substitua por testes reais do seu projeto.
+// Teste do Projeto Final usando Jest
+// Rode com: npm test
 
-let passou = 0;
-let falhou = 0;
+const app = require('../src/app');
 
-function assert(condicao, nome) {
-  if (condicao) {
-    console.log(`✅ ${nome}`);
-    passou++;
-  } else {
-    console.error(`❌ ${nome}`);
-    falhou++;
-  }
-}
+describe('Projeto Final — servidor', () => {
+  test('app é uma função Express válida', () => {
+    expect(typeof app).toBe('function');
+  });
 
-assert(true, 'Projeto final criado com estrutura básica');
-assert(typeof require === 'function', 'Node.js disponível');
+  test('GET / retorna 404 (nenhuma rota definida ainda)', async () => {
+    const res = await request(app).get('/');
+    expect(res.status).toBe(404);
+  });
+});
 
-console.log(`\n${passou} passou, ${falhou} falhou`);
-process.exit(falhou > 0 ? 1 : 0);
+const request = require('supertest');

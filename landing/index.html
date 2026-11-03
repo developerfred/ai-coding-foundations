@@ -354,6 +354,24 @@
 
     footer a { color: var(--accent); }
 
+    /* ===== Acessibilidade ===== */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
     /* ===== Mobile ===== */
     @media (max-width: 768px) {
       .nav-links { gap: 20px; font-size: 0.9rem; }
@@ -367,6 +385,7 @@
 <body>
 
   <header>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
     <div class="container nav">
       <a href="#" class="brand">
         <span class="accent">AI</span> Coding Foundations
@@ -391,14 +410,13 @@
       <h1 data-i18n="hero.title">Do Software 1.0 ao Software 2.0</h1>
       <p data-i18n="hero.subtitle">Formando a próxima geração de desenvolvedores que sabem <strong>como</strong> e <strong>quando</strong> deixar a IA escrever código — sem perder a capacidade de pensar, revisar e assumir responsabilidade pelo que é entregue.</p>
       <div class="hero-actions">
-        <a href="downloads/book.epub" class="btn btn-primary" data-i18n="hero.downloadEpub">Baixar EPUB &rarr;</a>
-        <a href="downloads/book.mobi" class="btn btn-secondary" data-i18n="hero.downloadMobi">Baixar MOBI &rarr;</a>
-        <a href="#repo" class="btn btn-secondary" data-i18n="hero.repo">Ver no GitHub</a>
+        <a href="downloads/book.epub" class="btn btn-primary" data-i18n="hero.downloadEpub" aria-label="Baixar o livro em formato EPUB">Baixar EPUB &rarr;</a>
+        <a href="#repo" class="btn btn-secondary" data-i18n="hero.repo" aria-label="Ver o repositório no GitHub">Ver no GitHub</a>
       </div>
     </div>
   </section>
 
-  <section id="about">
+  <section id="conteudo" tabindex="-1">
     <div class="container">
       <div class="section-head">
         <span class="kicker" data-i18n="about.kicker">Filosofia</span>
@@ -487,7 +505,6 @@
         'hero.subtitle': 'Formando a próxima geração de desenvolvedores que sabem <strong>como</strong> e <strong>quando</strong> deixar a IA escrever código — sem perder a capacidade de pensar, revisar e assumir responsabilidade pelo que é entregue.',
         'hero.repo': 'Ver no GitHub',
         'hero.downloadEpub': 'Baixar EPUB →',
-        'hero.downloadMobi': 'Baixar MOBI →',
         'about.kicker': 'Filosofia',
         'about.title': 'Fundamentos primeiro, IA como ferramenta',
         'about.subtitle': 'Este repositório ensina desenvolvedores a usar IA de forma crítica: avaliar, corrigir e evoluir o código gerado, nunca apenas copiar e deployar sem entender.',
@@ -523,7 +540,6 @@
         'hero.subtitle': 'Training the next generation of developers who know <strong>how</strong> and <strong>when</strong> to let AI write code — without losing the ability to think, review, and take responsibility for what is delivered.',
         'hero.repo': 'View on GitHub',
         'hero.downloadEpub': 'Download EPUB →',
-        'hero.downloadMobi': 'Download MOBI →',
         'about.kicker': 'Philosophy',
         'about.title': 'Fundamentals first, AI as a tool',
         'about.subtitle': 'This repository teaches developers to use AI critically: evaluate, fix, and evolve generated code — never just copy and deploy without understanding.',

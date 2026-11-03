@@ -4,7 +4,7 @@ Este documento é preenchido por um estudante que lê todo o repositório do com
 O objetivo é apontar **dúvidas, partes confusas, erros de código, conceitos faltantes e sugestões de correção**, para que voltemos e consertemos antes de publicar.
 
 > Como usar: leia cada módulo na ordem. Sempre que algo não ficar claro, anote abaixo com:  
-> **Módulo | Seção | Dúvida / Problema | Sugestão de correção | Prioridade (Alta/Média/Baixa)**
+> **Módulo | Seção | Dúvida / Problema | Como reproduzir | Resultado esperado | Resultado atual | Sugestão de correção | Prioridade (Alta/Média/Baixa)**
 
 ---
 
