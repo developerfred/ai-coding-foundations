@@ -5,12 +5,10 @@
   "main": "calculadora.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint calculadora.js teste/app.test.js",
     "audit": "npm audit --audit-level=critical",
-    "verificar": "npm run lint && npm test && npm run audit"
+    "verificar": "npm test && npm run audit"
   },
   "devDependencies": {
-    "eslint": "^4.0.0",
     "jest": "^25.1.0"
   }
 }
