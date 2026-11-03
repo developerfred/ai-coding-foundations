@@ -8,15 +8,9 @@
 
 ---
 
-## Sobre o formato MOBI
+## Sobre outros formatos
 
-O formato MOBI (Kindle) foi removido temporariamente. Se você precisa do livro em MOBI, pode converter o EPUB gratuitamente com o **[Calibre](https://calibre-ebook.com/)**:
-
-```bash
-ebook-convert book.epub book.mobi
-```
-
-Ou envie o EPUB pelo **"Send to Kindle"** da Amazon, que faz a conversão automaticamente.
+Atualmente apenas o EPUB está disponível para download. Se precisar em outro formato (ex: MOBI para Kindle), pode converter o EPUB gratuitamente com o **[Calibre](https://calibre-ebook.com/)** ou enviar pelo **"Send to Kindle"** da Amazon.
 
 ---
 

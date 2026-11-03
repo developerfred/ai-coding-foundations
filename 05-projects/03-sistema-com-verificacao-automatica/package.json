@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint calculadora.js teste/app.test.js",
-    "audit": "npm audit --audit-level=moderate",
+    "audit": "npm audit --audit-level=critical",
     "verificar": "npm run lint && npm test && npm run audit"
   },
   "devDependencies": {
