@@ -44,7 +44,7 @@ test('desconto de 100% resulta em zero', () => {
   expect(aplicarDesconto(100, 100)).toBe(0);
 });
 
-test('percentual invalido lancado erro', () => {
+test('percentual inválido lança erro', () => {
   expect(() => aplicarDesconto(100, 150)).toThrow();
 });
 ```

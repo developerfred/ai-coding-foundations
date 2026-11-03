@@ -20,7 +20,7 @@ async function buscarUsuario(id) {
 ```javascript
 async function buscarUsuario(id) {
   if (!Number.isInteger(id) || id <= 0) {
-    throw new Error('ID invalido');
+    throw new Error('ID inválido');
   }
   const sql = 'SELECT * FROM usuarios WHERE id = $1';
   return await db.query(sql, [id]);

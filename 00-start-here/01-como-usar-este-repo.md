@@ -39,6 +39,26 @@ Os módulos são:
 
 Veja `02-pre-requisitos.md` para saber o que instalar antes de começar.
 
+## Como rodar os projetos
+
+Cada projeto em `05-projects/` tem seu próprio `package.json` e README. Para rodar qualquer um:
+
+```bash
+# 1. Entre na pasta do projeto
+cd 05-projects/01-todo-app-com-revisao   # ou outro projeto
+
+# 2. Instale as dependências (quando houver package.json)
+npm install
+
+# 3. Rode os testes
+npm test
+
+# 4. Para projetos com servidor (ex: API), inicie
+npm start
+```
+
+Projetos sem `package.json` (ex: Todo App com HTML/JS) podem ser abertos diretamente no navegador.
+
 ---
 
 **Licença**: Apache License 2.0  

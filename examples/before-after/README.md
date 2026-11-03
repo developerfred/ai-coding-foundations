@@ -29,7 +29,7 @@ function aplicarDesconto(preco, pct) {
     throw new Error('preco e pct devem ser numeros');
   }
   if (preco < 0) {
-    throw new Error('preco nao pode ser negativo');
+    throw new Error('preço não pode ser negativo');
   }
   if (pct < 0 || pct > 100) {
     throw new Error('pct deve estar entre 0 e 100');

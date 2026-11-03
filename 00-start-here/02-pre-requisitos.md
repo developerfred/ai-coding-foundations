@@ -14,6 +14,7 @@ Para aproveitar este repositório, você vai precisar de:
 - Conta em um provedor de LLM (Claude, OpenAI, etc.)
 - Acesso a um agente de código (Claude Code, Cursor, GitHub Copilot)
 - **Python** (v3.10+) — se quiser acompanhar exemplos de micrograd / Karpathy
+- **TypeScript** — mencionado nos pré-requisitos como opcional; todo o código do repositório está em JavaScript puro. TypeScript não é obrigatório para nenhum projeto.
 
 ## Como começar
 

@@ -13,6 +13,8 @@ Exercícios clássicos **sem IA** para construir base sólida.
 
 Faça uma requisição GET para uma API pública e trate a resposta, incluindo erros de rede.
 
+> **Nota:** `fetch` está disponível nativamente no Node.js a partir da **v18+**. Se você estiver em uma versão mais antiga, use uma biblioteca como `node-fetch` ou atualize o Node.js.
+
 ```javascript
 async function fetchData(url) {
   try {

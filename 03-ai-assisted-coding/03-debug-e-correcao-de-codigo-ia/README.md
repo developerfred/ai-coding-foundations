@@ -44,7 +44,7 @@ function calcularMedia(numeros) {
 ### Teste que previne regressão
 
 ```javascript
-test('calcularMedia retorna NaN para array vazio', () => {
+test('calcularMedia lança erro para array vazio', () => {
   expect(() => calcularMedia([])).toThrow('Lista de números não pode estar vazia');
 });
 
