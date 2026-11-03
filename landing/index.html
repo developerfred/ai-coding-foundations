@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Coding Foundations | Formando a Próxima Geração de Desenvolvedores</title>
+  <meta name="description" content="Repositório educacional para formar desenvolvedores que usam IA criticamente, sem perder o entendimento do código. Download EPUB e MOBI. Licença Apache 2.0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #131b25;
+      --surface-2: #1a2533;
+      --text: #e8eef5;
+      --text-muted: #94a3b8;
+      --accent: #7c3aed;
+      --accent-2: #2563eb;
+      --accent-glow: rgba(124, 58, 237, 0.35);
+      --border: #253040;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Nav ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 15, 20, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand .accent { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      margin-left: 12px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .lang-btn:hover { color: var(--text); border-color: var(--text-muted); }
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      padding: 110px 0 100px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 10% 20%, var(--accent-glow) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(37, 99, 235, 0.2) 0%, transparent 40%);
+    }
+
+    .hero > .container { position: relative; z-index: 5; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: #a78bfa;
+      font-weight: 500;
+      margin-bottom: 20px;
+      max-fit: content;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .highlight { color: var(--accent); }
+
+    .hero p {
+      font-size: clamp(1rem, 1.2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      font-family: inherit;
+    }
+
+    .btn:active { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 25px var(--accent-glow);
+    }
+
+    .btn-primary:hover { box-shadow: 0 15px 35px var(--accent-glow); opacity: 0.95; }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover { border-color: var(--text-muted); background: var(--surface); }
+
+    .btn .format { font-size: 0.8rem; opacity: 0.8; }
+
+    /* ===== Sections ===== */
+    section { padding: 90px 0; }
+
+    .section-head {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-head .kicker {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* ===== Features / Philosophy ===== */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .phil-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .phil-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+    .phil-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .phil-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .phil-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ===== Downloads ===== */
+    .downloads {
+      background: var(--surface-2);
+      border-radius: 16px;
+      padding: 56px 40px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .downloads h2 { margin-bottom: 10px; }
+    .downloads p { color: var(--text-muted); margin-bottom: 40px; }
+
+    .download-grid {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .download-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .download-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .format-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    .download-card h3 { font-size: 1.25rem; margin-bottom: 6px; }
+    .download-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px; }
+
+    .download-card .btn { width: 100%; justify-content: center; padding: 12px 20px; }
+
+    /* ===== License / Credits ===== */
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item p { color: var(--text-muted); font-size: 0.9rem; margin: 4px 0; }
+    .meta-item b { color: var(--text); }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    footer a { color: var(--accent); }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px) {
+      .nav-links { gap: 20px; font-size: 0.9rem; }
+      .hero { padding: 90px 0 80px; }
+      .download-card { width: 100%; max-width: 260px; }
+      .meta-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .lang-switch { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="accent">AI</span> Coding Foundations
+      </a>
+      <nav class="nav-links">
+        <a data-i18n="nav.home">Início</a>
+        <a data-i18n="nav.about">Sobre</a>
+        <a data-i18n="nav.downloads">Downloads</a>
+        <a data-i18n="nav.repo">Repositório</a>
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="pt-BR" onclick="setLang('pt-BR')">PT-BR</button>
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <span class="hero-eyebrow" data-i18n="hero.eyebrow">Livro educacional &middot; Código aberto</span>
+      <h1 data-i18n="hero.title">Do Software 1.0 ao Software 2.0</h1>
+      <p data-i18n="hero.subtitle">Formando a próxima geração de desenvolvedores que sabem <strong>como</strong> e <strong>quando</strong> deixar a IA escrever código — sem perder a capacidade de pensar, revisar e assumir responsabilidade pelo que é entregue.</p>
+      <div class="hero-actions">
+        <a href="#downloads" class="btn btn-primary" data-i18n="hero.download">Baixar livro &rarr;</a>
+        <a href="#repo" class="btn btn-secondary" data-i18n="hero.repo">Ver no GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker" data-i18n="about.kicker">Filosofia</span>
+        <h2 data-i18n="about.title">Fundamentos primeiro, IA como ferramenta</h2>
+        <p data-i18n="about.subtitle">Este repositório ensina desenvolvedores a usar IA de forma crítica: avaliar, corrigir e evoluir o código gerado, nunca apenas copiar e deployar sem entender.</p>
+      </div>
+
+      <div class="philosophy-grid">
+        <div class="phil-card">
+          <div class="phil-number">01</div>
+          <h3 data-i18n="phil1.title">Fundamentos primeiro</h3>
+          <p data-i18n="phil1.text">Não pule algoritmos, estruturas de dados e engenharia de software. A base sólida é o que permite julgar o que a IA gera.</p>
+        </div>
+        <div class="phil-card">
+          <div class="phil-number">02</div>
+          <h3 data-i18n="phil2.title">IA como ferramenta, não como cérebro</h3>
+          <p data-i18n="phil2.text">Você deve ser capaz de explicar o código que aceitou. A IA escreve; você decide o que fica.</p>
+        </div>
+        <div class="phil-card">
+          <div class="phil-number">03</div>
+          <h3 data-i18n="phil3.title">Revisão &gt; Geração</h3>
+          <p data-i18n="phil3.text">A habilidade mais valiosa é saber quando o código está errado — e por que está errado.</p>
+        </div>
+        <div class="phil-card">
+          <div class="phil-number">04</div>
+          <h3 data-i18n="phil4.title">Projetos reais</h3>
+          <p data-i18n="phil4.text">Cada módulo termina com código que roda e pode ser criticado. Nada de exemplo abstrato que não compila.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="downloads">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker" data-i18n="downloads.kicker">Baixar o livro</span>
+        <h2 data-i18n="downloads.title">Leia em qualquer lugar</h2>
+        <p data-i18n="downloads.subtitle">O livro está disponível em EPUB e MOBI, totalmente gratuito e sob licença Apache 2.0.</p>
+      </div>
+
+      <div class="download-grid">
+        <div class="download-card">
+          <span class="format-badge" data-i18n="downloads.epub">EPUB</span>
+          <h3 data-i18n="downloads.epubTitle">EPUB (universal)</h3>
+          <p data-i18n="downloads.epubDesc">Funciona em Apple Books, Google Play Books, Kobo, Nook e leitores de e-book gerais.</p>
+          <a href="downloads/book.epub" class="btn btn-primary" data-i18n="downloads.btnEpub">Baixar EPUB</a>
+        </div>
+        <div class="download-card">
+          <span class="format-badge" data-i18n="downloads.mobi">MOBI</span>
+          <h3 data-i18n="downloads.mobiTitle">MOBI (Kindle)</h3>
+          <p data-i18n="downloads.mobiDesc">Formato da Amazon Kindle. Ideal para leitura em dispositivos Kindle e apps Kindle.</p>
+          <a href="downloads/book.mobi" class="btn btn-primary" data-i18n="downloads.btnMobi">Baixar MOBI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="meta-row">
+    <div class="meta-item">
+      <p data-i18n="meta.licenseTitle">Licença</p>
+      <b>Apache License 2.0</b>
+      <p>Totalmente aberta e permissiva. Permite uso comercial, modificação e distribuição.</p>
+    </div>
+    <div class="meta-item">
+      <p data-i18n="meta.creditsTitle">Créditos</p>
+      <b>codingsh</b>
+      <p>codingsh@pm.me — idealização e criação do repositório.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>AI Coding Foundations &middot; Formando desenvolvedores que usam IA sem abrir mão do entendimento.</p>
+    <p style="margin-top:8px;">Licenciado sob <a href="LICENSE" target="_blank">Apache License 2.0</a> &middot; Créditos: <a href="mailto:codingsh@pm.me">codingsh &lt;codingsh@pm.me&gt;</a></p>
+  </footer>
+
+  <script src="assets/script.js"></script>
+  <script>
+    const translations = {
+      'pt-BR': {
+        'nav.home': 'Início',
+        'nav.about': 'Sobre',
+        'nav.downloads': 'Downloads',
+        'nav.repo': 'Repositório',
+        'hero.eyebrow': 'Livro educacional · Código aberto',
+        'hero.title': 'Do Software 1.0 ao Software 2.0',
+        'hero.subtitle': 'Formando a próxima geração de desenvolvedores que sabem <strong>como</strong> e <strong>quando</strong> deixar a IA escrever código — sem perder a capacidade de pensar, revisar e assumir responsabilidade pelo que é entregue.',
+        'hero.download': 'Baixar livro →',
+        'hero.repo': 'Ver no GitHub',
+        'about.kicker': 'Filosofia',
+        'about.title': 'Fundamentos primeiro, IA como ferramenta',
+        'about.subtitle': 'Este repositório ensina desenvolvedores a usar IA de forma crítica: avaliar, corrigir e evoluir o código gerado, nunca apenas copiar e deployar sem entender.',
+        'phil1.title': 'Fundamentos primeiro',
+        'phil1.text': 'Não pule algoritmos, estruturas de dados e engenharia de software. A base sólida é o que permite julgar o que a IA gera.',
+        'phil2.title': 'IA como ferramenta, não como cérebro',
+        'phil2.text': 'Você deve ser capaz de explicar o código que aceitou. A IA escreve; você decide o que fica.',
+        'phil3.title': 'Revisão &gt; Geração',
+        'phil3.text': 'A habilidade mais valiosa é saber quando o código está errado — e por que está errado.',
+        'phil4.title': 'Projetos reais',
+        'phil4.text': 'Cada módulo termina com código que roda e pode ser criticado. Nada de exemplo abstrato que não compila.',
+        'downloads.kicker': 'Baixar o livro',
+        'downloads.title': 'Leia em qualquer lugar',
+        'downloads.subtitle': 'O livro está disponível em EPUB e MOBI, totalmente gratuito e sob licença Apache 2.0.',
+        'downloads.epub': 'EPUB',
+        'downloads.epubTitle': 'EPUB (universal)',
+        'downloads.epubDesc': 'Funciona em Apple Books, Google Play Books, Kobo, Nook e leitores de e-book gerais.',
+        'downloads.btnEpub': 'Baixar EPUB',
+        'downloads.mobi': 'MOBI',
+        'downloads.mobiTitle': 'MOBI (Kindle)',
+        'downloads.mobiDesc': 'Formato da Amazon Kindle. Ideal para leitura em dispositivos Kindle e apps Kindle.',
+        'downloads.btnMobi': 'Baixar MOBI',
+        'meta.licenseTitle': 'Licença',
+        'meta.creditsTitle': 'Créditos',
+      },
+      'en': {
+        'nav.home': 'Home',
+        'nav.about': 'About',
+        'nav.downloads': 'Downloads',
+        'nav.repo': 'Repository',
+        'hero.eyebrow': 'Educational book · Open source',
+        'hero.title': 'From Software 1.0 to Software 2.0',
+        'hero.subtitle': 'Training the next generation of developers who know <strong>how</strong> and <strong>when</strong> to let AI write code — without losing the ability to think, review, and take responsibility for what is delivered.',
+        'hero.download': 'Download book →',
+        'hero.repo': 'View on GitHub',
+        'about.kicker': 'Philosophy',
+        'about.title': 'Fundamentals first, AI as a tool',
+        'about.subtitle': 'This repository teaches developers to use AI critically: evaluate, fix, and evolve generated code — never just copy and deploy without understanding.',
+        'phil1.title': 'Fundamentals first',
+        'phil1.text': 'Don’t skip algorithms, data structures, and software engineering. The solid base is what lets you judge what the AI generates.',
+        'phil2.title': 'AI as a tool, not a brain',
+        'phil2.text': 'You must be able to explain the code you accept. AI writes; you decide what stays.',
+        'phil3.title': 'Review &gt; Generation',
+        'phil3.text': 'The most valuable skill is knowing when the code is wrong — and why it’s wrong.',
+        'phil4.title': 'Real projects',
+        'phil4.text': 'Each module ends with code that runs and can be critiqued. No abstract examples that don’t compile.',
+        'downloads.kicker': 'Download the book',
+        'downloads.title': 'Read anywhere',
+        'downloads.subtitle': 'The book is available in EPUB and MOBI, completely free and under the Apache License 2.0.',
+        'downloads.epub': 'EPUB',
+        'downloads.epubTitle': 'EPUB (universal)',
+        'downloads.epubDesc': 'Works with Apple Books, Google Play Books, Kobo, Nook, and general e-book readers.',
+        'downloads.btnEpub': 'Download EPUB',
+        'downloads.mobi': 'MOBI',
+        'downloads.mobiTitle': 'MOBI (Kindle)',
+        'downloads.mobiDesc': 'Amazon Kindle format. Ideal for Kindle devices and Kindle apps.',
+        'downloads.btnMobi': 'Download MOBI',
+        'meta.licenseTitle': 'License',
+        'meta.creditsTitle': 'Credits',
+      }
+    };
+
+    let currentLang = 'pt-BR';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      // Translate all elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

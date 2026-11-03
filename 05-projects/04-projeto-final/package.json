@@ -1,0 +1,10 @@
+{
+  "name": "projeto-final",
+  "version": "1.0.0",
+  "description": "Projeto final do AI Coding Foundations",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "node teste/app.test.js"
+  }
+}

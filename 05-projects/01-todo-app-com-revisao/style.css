@@ -1,0 +1,24 @@
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #0b0f14;
+  color: #e8eef5;
+  margin: 0;
+  padding: 24px;
+  line-height: 1.6;
+}
+.container { max-width: 520px; margin: 0 auto; }
+h1 { font-size: 1.5rem; margin-bottom: 16px; }
+form { display: flex; gap: 8px; margin-bottom: 16px; }
+input { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #253040; background: #131b25; color: #e8eef5; }
+button { padding: 10px 16px; border-radius: 6px; border: none; background: #7c3aed; color: #fff; cursor: pointer; font-weight: 600; }
+button:hover { background: #6d28d9; }
+ul { list-style: none; padding: 0; }
+li { display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #253040; border-radius: 6px; margin-bottom: 8px; background: #131b25; }
+li.concluida span { text-decoration: line-through; opacity: 0.6; }
+li span { flex: 1; cursor: pointer; }
+li button { background: transparent; color: #ef4444; padding: 6px 10px; font-size: 0.85rem; }
+li button:hover { background: rgba(239, 68, 68, 0.1); }
+#mensagem { margin-top: 12px; padding: 8px; border-radius: 6px; font-size: 0.9rem; }
+#mensagem.erro { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+#mensagem.sucesso { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
