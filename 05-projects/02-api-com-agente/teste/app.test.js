@@ -5,9 +5,9 @@ const request = require('supertest');
 const { app } = require('../server');
 
 describe('API de Itens', () => {
-  beforeEach(() => {
-    // Limpa os itens antes de cada teste
-    app.locals.itens = [];
+  beforeEach(async () => {
+    // Reinicia o estado para isolar testes
+    await request(app).delete('/itens/limpar-todos');
   });
 
   test('GET /itens retorna lista vazia inicialmente', async () => {

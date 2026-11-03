@@ -1,6 +1,7 @@
 // Teste do Projeto Final usando Jest
 // Rode com: npm test
 
+const request = require('supertest');
 const app = require('../src/app');
 
 describe('Projeto Final — servidor', () => {
@@ -13,5 +14,3 @@ describe('Projeto Final — servidor', () => {
     expect(res.status).toBe(404);
   });
 });
-
-const request = require('supertest');

@@ -69,6 +69,13 @@ app.post('/itens', validarItem, (req, res) => {
   res.status(201).json(item);
 });
 
+// DELETE /itens/limpar-todos — limpa todos os itens (apenas para testes)
+app.delete('/itens/limpar-todos', (_req, res) => {
+  itens = [];
+  proximoId = 1;
+  res.status(204).send();
+});
+
 // DELETE /itens/:id — remover item
 app.delete('/itens/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);

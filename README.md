@@ -61,8 +61,7 @@ ai-coding-foundations/
 │   ├── index.html
 │   └── assets/
 └── downloads/
-    ├── book.epub
-    └── book.mobi
+    └── book.epub
 ```
 
 ---
