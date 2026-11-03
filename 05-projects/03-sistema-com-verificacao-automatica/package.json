@@ -9,6 +9,6 @@
     "verificar": "npm test && npm run audit"
   },
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^30.5.2"
   }
 }
