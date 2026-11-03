@@ -20,7 +20,7 @@ O objetivo é apontar **dúvidas, partes confusas, erros de código, conceitos f
 | 6 | 05-projects | ✅ Lido | 4 projetos com código real, testes Jest (32 passando), checklist de revisão. |
 | 7 | examples | ✅ Lido | bom-vs-ruim e before-after com comentários. |
 | 8 | Landing page (pt-BR / EN) | ✅ Lido | i18n completo, download EPUB, acessibilidade (skip-link, aria-label, aria-live). |
-| 9 | EPUB | ✅ Lido | book.epub válido (9 capítulos), MOBI removido. |
+| 9 | EPUB | ✅ Lido | book.epub válido (9 capítulos). |
 
 ---
 
@@ -53,7 +53,7 @@ O objetivo é apontar **dúvidas, partes confusas, erros de código, conceitos f
 - Licença Apache 2.0 presente? ✅ Sim — arquivo `LICENSE` na raiz.
 - Créditos codingsh <codingsh@pm.me> presentes? ✅ Sim — em todos os arquivos.
 - Download EPUB funciona? ✅ Sim — `book.epub` válido.
-- Download MOBI disponível? ❌ Não — apenas EPUB. Para MOBI, converter o EPUB com Calibre.
+- Download MOBI disponível? Não — apenas EPUB.
 - Idioma EN / PT-BR completo? Parcial — landing page bilíngue; módulos em PT-BR.
 
 ---
