@@ -1,0 +1,34 @@
+name: Testes e Qualidade
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project:
+          - 05-projects/01-todo-app-com-revisao
+          - 05-projects/02-api-com-agente
+          - 05-projects/03-sistema-com-verificacao-automatica
+          - 05-projects/04-projeto-final
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+        working-directory: ${{ matrix.project }}
+
+      - name: Rodar testes
+        run: npm test
+        working-directory: ${{ matrix.project }}

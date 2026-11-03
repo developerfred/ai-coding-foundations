@@ -53,7 +53,7 @@ O objetivo é apontar **dúvidas, partes confusas, erros de código, conceitos f
 - Licença Apache 2.0 presente? ✅ Sim — arquivo `LICENSE` na raiz.
 - Créditos codingsh <codingsh@pm.me> presentes? ✅ Sim — em todos os arquivos.
 - Download EPUB funciona? ✅ Sim — `book.epub` válido.
-- Download MOBI disponível? Não — apenas EPUB.
+- Download em outro formato disponível? Não — apenas EPUB.
 - Idioma EN / PT-BR completo? Parcial — landing page bilíngue; módulos em PT-BR.
 
 ---
