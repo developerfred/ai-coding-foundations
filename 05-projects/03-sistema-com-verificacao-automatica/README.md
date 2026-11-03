@@ -34,13 +34,12 @@ npm run verificar # roda tudo: lint + teste + audit
   "description": "Sistema com verificação automática integrada",
   "main": "calculadora.js",
   "scripts": {
-    "test": "node teste.js",
-    "lint": "eslint calculadora.js teste.js || true",
-    "audit": "npm audit --audit-level=moderate || true",
-    "verificar": "npm run lint && npm test && npm run audit"
+    "test": "jest",
+    "audit": "npm audit --audit-level=critical",
+    "verificar": "npm test && npm run audit"
   },
   "devDependencies": {
-    "eslint": "^8.40.0"
+    "jest": "^29.0.0"
   }
 }
 ```
