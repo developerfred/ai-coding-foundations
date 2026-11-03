@@ -10,7 +10,7 @@
     "verificar": "npm run lint && npm test && npm run audit"
   },
   "devDependencies": {
-    "eslint": "^4.0.0",
+    "eslint": "^10.14.0",
     "jest": "^25.1.0"
   }
 }
