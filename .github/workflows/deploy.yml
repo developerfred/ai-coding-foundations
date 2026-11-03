@@ -27,10 +27,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload landing page
+      - name: Copy downloads to artifact dir
+        run: |
+          mkdir -p _artifact/downloads
+          cp -r landing/* _artifact/
+          cp -r downloads/* _artifact/downloads/
+
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'landing/'
+          path: '_artifact/'
 
       - name: Deploy to GitHub Pages
         id: deployment

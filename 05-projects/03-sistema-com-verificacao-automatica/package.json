@@ -5,8 +5,8 @@
   "main": "calculadora.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint calculadora.js teste/app.test.js || true",
-    "audit": "npm audit --audit-level=moderate || true",
+    "lint": "eslint calculadora.js teste/app.test.js",
+    "audit": "npm audit --audit-level=moderate",
     "verificar": "npm run lint && npm test && npm run audit"
   },
   "devDependencies": {

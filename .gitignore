@@ -11,9 +11,9 @@ dist/
 build/
 epub_build/
 
-# Downloads binários (versionear apenas se necessário)
-downloads/*.epub
-downloads/*.mobi
+# Downloads binários - versionar o EPUB e MOBI do livro
+!downloads/book.epub
+!downloads/book.mobi
 
 # IDE
 .vscode/
