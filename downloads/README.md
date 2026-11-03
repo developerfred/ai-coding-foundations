@@ -10,7 +10,7 @@
 
 ## Sobre outros formatos
 
-Atualmente apenas o EPUB está disponível para download. Se precisar em outro formato (ex: MOBI para Kindle), pode converter o EPUB gratuitamente com o **[Calibre](https://calibre-ebook.com/)** ou enviar pelo **"Send to Kindle"** da Amazon.
+Atualmente apenas o EPUB está disponível para download.
 
 ---
 
