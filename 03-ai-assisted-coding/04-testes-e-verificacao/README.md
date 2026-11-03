@@ -24,9 +24,7 @@ Testes são sua rede de segurança.
 
 ```javascript
 // Código gerado: função que desconta preço
-function aplicarDesco
-
-nto(preco, percentual) {
+function aplicarDesconto(preco, percentual) {
   return preco - (preco * percentual / 100);
 }
 ```
